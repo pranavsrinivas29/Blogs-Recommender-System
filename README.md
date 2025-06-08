@@ -3,6 +3,28 @@
 This project builds a **multi-level hybrid blog recommendation system** using a combination of popularity-based, content-based, collaborative filtering approaches. It is based on three main datasets: author information, blog metadata, and user-blog interaction (ratings).
 
 ---
+## Introduction
+### Recommender System
+A Recommender System is a type of algorithm or software application that provides personalized suggestions to users based on their preferences, behaviors, or other users' data. These systems are widely used in platforms like Netflix, Amazon, YouTube, and Spotify to help users discover products, movies, music, etc., that they are likely to enjoy.
+
+Types of Recommender Systems
+- Content-Based Filtering
+    - Idea: Recommends items similar to those the user has liked in the past.
+    - How: Uses item features (e.g., genre, keywords) and compares them with the user’s profile.
+    - Example: If you watched many action movies, it suggests other action films.
+
+- Collaborative Filtering
+    - Idea: Recommends items that similar users liked.
+    - Types:
+    - User-based: Find users similar to you and suggest what they liked.
+    - Item-based: Find items similar to what you liked and recommend them.
+    - Example: "Users who watched X also watched Y."
+
+- Hybrid Methods
+    - Idea: Combine content-based and collaborative filtering for better results.
+    - Example: Netflix combines your viewing history (content-based) with what similar users are watching (collaborative).
+
+---
 
 ## 🗂️ Datasets Used
 
@@ -69,24 +91,12 @@ When a recommender doesn’t have enough information to make accurate prediction
 
 ### 🔹 Level 3 – Matrix Factorization
 
-#### ✅ SVD using Surprise
-- Factorizes user-blog matrix into latent vectors.
-- Predicts missing ratings using dot product of user/item vectors.
-- Requires `surprise` library and dense ratings matrix.
-
 #### ✅ BPR (Bayesian Personalized Ranking)
+Bayesian Personalized Ranking (BPR) is a pairwise ranking algorithm used in recommender systems, especially for implicit feedback data (like clicks, views, or purchases without explicit ratings).
+
 - Learns user preferences using pairwise ranking.
 - Trains on `(user, positive_item, negative_item)` triples.
 - Implemented using the `implicit` library and CSR matrix.
-
----
-
-### 🔹 Level 4 – Content + Topic Modeling
-
-#### ✅ TF-IDF Based Content Recommender
-- Computes TF-IDF vectors from blog title and content.
-- Finds cosine similarity between user-liked blogs and unseen ones.
-- Recommends based on textual similarity.
 
 #### ✅ LDA Topic Modeling
 - Extracts latent topics from blog content using Gensim.
@@ -106,10 +116,12 @@ When a recommender doesn’t have enough information to make accurate prediction
 
 ## 📊 Visualizations
 
-- Bar plot of blog rating distribution using Plotly
+- Box plot of blog rating distribution using Plotly
+![Blog rating distribution](images/blog_ratings.png)
 - Box plot of topic frequency
+![Topic frequency](images/blog_topic.png)
 - LDA topic-word display
-- t-SNE or clustering plots (optional)
+![LDA](images/lda.png)
 
 ---
 
@@ -123,32 +135,20 @@ When a recommender doesn’t have enough information to make accurate prediction
 
 ---
 
-## 🔧 Future Enhancements
-
-- Streamlit UI for interactive recommendations
-- Hybrid recommender (collaborative + content)
-- Model monitoring & feedback loop
-- Personalized topic filtering
-- Deployment via Docker/Heroku
-
----
 
 ## 📁 Folder Structure (Suggested)
 
 ```
 .
 ├── data/
-│   ├── authors.csv
-│   ├── blogs.csv
-│   └── ratings.csv
+│   ├── Author Data.csv
+│   ├── Blog Ratings.csv
+│   └── Medium Blog Data.csv
+│   └── Authors_Data_Cleaned.csv
 ├── notebooks/
-│   ├── level1_popularity_topic.ipynb
-│   ├── level2_collaborative.ipynb
-│   ├── level3_matrix_factorization.ipynb
-│   └── level4_topic_modeling.ipynb
-├── scripts/
-│   ├── preprocessing.py
-│   └── recommenders.py
+│   ├── blog_recommender_level1.ipynb
+│   ├── blog_recommender_level2.ipynb
+│   ├── blog_recommender_level3.ipynb
 ├── README.md
 └── requirements.txt
 ```
@@ -168,11 +168,5 @@ Dependencies include:
 - gensim, nltk
 - surprise, implicit
 - matplotlib, seaborn, plotly
-
----
-
-## ✍️ Author
-
-Developed as a multi-stage recommender system project for blog suggestions using hybrid techniques.
 
 ---
